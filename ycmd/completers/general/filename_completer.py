@@ -158,8 +158,9 @@ def _GenerateCandidatesForPaths( absolute_paths ):
   completion_dicts = []
   # Keep original ordering
   for basename in basenames:
+    is_dir = extra_info[ basename ] == 2
     completion_dicts.append(
-      responses.BuildCompletionData( basename,
+      responses.BuildCompletionData( basename + os.path.sep if is_dir else basename,
                                      EXTRA_INFO_MAP[ extra_info[ basename ] ] ) )
 
   return completion_dicts
