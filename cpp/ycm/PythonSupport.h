@@ -31,6 +31,17 @@ boost::python::list FilterAndSortCandidates(
   const std::string &candidate_property,
   const std::string &query );
 
+// Try partial match regex on query
+//
+// Return
+// - 0 : no match
+// - 1 : partial match
+// - 2 : full match
+int QueryPartialMatch(
+    const std::string &regex,
+    const std::string &query,
+    const unsigned int valid_partial_match_size );
+
 } // namespace YouCompleteMe
 
 #endif /* end of include guard: PYTHONSUPPORT_H_KWGFEX0V */

@@ -53,6 +53,7 @@ BOOST_PYTHON_MODULE(ycm_core)
 
   def( "HasClangSupport", HasClangSupport );
   def( "FilterAndSortCandidates", FilterAndSortCandidates );
+  def( "QueryPartialMatch", QueryPartialMatch );
   def( "YcmCoreVersion", YcmCoreVersion );
 
   class_< IdentifierCompleter, boost::noncopyable >( "IdentifierCompleter" )

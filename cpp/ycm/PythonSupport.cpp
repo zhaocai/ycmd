@@ -24,6 +24,8 @@
 
 #include <boost/algorithm/string.hpp>
 #include <boost/algorithm/cxx11/any_of.hpp>
+#include <boost/regex.hpp>
+#include <iterator>
 #include <vector>
 
 using boost::algorithm::any_of;
@@ -114,6 +116,47 @@ boost::python::list FilterAndSortCandidates(
   }
 
   return filtered_candidates;
+}
+
+int QueryPartialMatch(
+    const std::string &regex,
+    const std::string &query,
+    const unsigned int valid_partial_match_size ) {
+  int match_result = 0;
+  unsigned int len;
+
+  boost::regex expression( regex );
+
+  boost::sregex_iterator it(
+      query.begin(), query.end(),
+      expression,
+      boost::match_not_null | boost::match_default | boost::match_partial);
+  boost::sregex_iterator _;
+
+  while( it != _ ) {
+    if( (*it)[0].matched == false ) {
+      // partial match
+
+      // only want the rightmost match.
+      if ( (*it)[0].second == query.end() ) {
+        len = std::distance( (*it)[0].first, (*it)[0].second );
+        if ( len >= valid_partial_match_size ) {
+        match_result = 1;
+        break;
+      }
+      }
+    } else {
+      // full match
+      if ( (*it)[0].second == query.end() ) {
+        match_result = 2;
+        break;
+      }
+    }
+
+    ++it;
+  }
+
+  return match_result;
 }
 
 } // namespace YouCompleteMe
