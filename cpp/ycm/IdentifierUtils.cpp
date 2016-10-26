@@ -69,6 +69,7 @@ const boost::unordered_map < const char *,
         ( "Ant"        , "ant"        )
         ( "Asm"        , "asm"        )
         ( "Awk"        , "awk"        )
+        ( "Autohotkey" , "autohotkey" )
         ( "Basic"      , "basic"      )
         ( "C++"        , "cpp"        )
         ( "C#"         , "cs"         )
