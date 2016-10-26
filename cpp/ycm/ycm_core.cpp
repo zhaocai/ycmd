@@ -54,6 +54,7 @@ BOOST_PYTHON_MODULE(ycm_core)
 
   def( "HasClangSupport", HasClangSupport );
   def( "FilterAndSortCandidates", FilterAndSortCandidates );
+  def( "QueryPartialMatch", QueryPartialMatch );
   def( "YcmCoreVersion", YcmCoreVersion );
 
   // This is exposed so that we can test it.
